@@ -1,11 +1,12 @@
 import React, { useEffect, useState} from 'react';
 import './App.css';
 import Recipe from './Recipe';
-
+const dotenv = require('dotenv');
+dotenv.config();
 
 function App() {
-  const APPID = 'f8aaac55';
-  const APPKEYS = '8a0979caf8418cc6c253fe55985b51ec';
+  const APPID = process.env.APPID;
+  const APPKEYS = process.env.APPKEYS;
 
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState('')
