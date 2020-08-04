@@ -1,13 +1,13 @@
 import React, { useEffect, useState} from 'react';
 import './App.css';
 import Recipe from './Recipe';
-const dotenv = require('dotenv');
-dotenv.config();
+// import dotenv from 'dotenv';
+// dotenv.config();
+
+const APPID = process.env.REACT_APP_APPID;
+const APPKEYS = process.env.REACT_APP_APPKEYS;
 
 function App() {
-  const APPID = process.env.APPID;
-  const APPKEYS = process.env.APPKEYS;
-
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState('')
   const [query, setQuery] = useState('')
@@ -15,7 +15,9 @@ function App() {
   //Use useEffect to log the contents of the API when Page Loads
   useEffect(() => {
     getRecipes();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
+//  https://api.edamam.com/search?q=chicken&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}
 
   const getRecipes = async () => {
     const response = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${APPID}&app_key=${APPKEYS}&from=0&to=3&calories=591-722&health=alcohol-free`);
